@@ -1,13 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+} from "react-router-dom";
+import './assets/css/reset.css';
+import './assets/css/app.css';
+import PageNotFound from './components/pageNotFound';
+import Header from './components/header';
+import Footer from './components/footer';
+import HomePage from './containers/homePage';
+import SeriesPage from './containers/seriesPage';
+import MoviesPage from './containers/moviesPage';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <div>
+      <BrowserRouter>
+      <Header />
+        <Switch>
+            <Route path="/" component={HomePage} exact />
+            <Route path="/series" component={SeriesPage} exact />
+            <Route path="/movies" component={MoviesPage} exact />
+            <Route path="*" component={PageNotFound} />
+        </Switch>
+        <Footer />
+    </BrowserRouter>
+  </div>,
   document.getElementById('root')
 );
 
